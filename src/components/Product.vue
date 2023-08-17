@@ -1,14 +1,22 @@
 <template>
   <div class="col bg-white border border-slate-200 rounded-2xl shadow-md">
-    <img class="w-full" :src="image" alt="" />
+    <div
+      class="h-48 overflow-hidden justify-center items-center px-16 py-2 content-center"
+    >
+      <img class="w-full" :src="product.image" alt="" />
+    </div>
 
     <div class="card-body py-4 px-5">
-      <h2 class="font font-bold text-xl text-slate-600 mb-1">Product Title</h2>
-      <p class="font font-regular text-slate-500 mb-4">
-        Lorem ipsum dolor sit amet adipisicing elit.
+      <h2 class="font font-bold text-lg text-slate-600 mb-1 truncate">
+        {{ product.title }}
+      </h2>
+      <p class="font font-regular text-slate-500 mb-4 truncate">
+        {{ product.description }}
       </p>
       <div class="flex justify-between items-center">
-        <p class="font font-bold text-xl text-slate-600">$200.00</p>
+        <p class="font font-bold text-xl text-slate-600">
+          ${{ product.price }}
+        </p>
         <button
           class="bg-primary py-2 px-4 rounded-full text-slate-200 font-medium hover:bg-primaryDark transition300 whitespace-nowrap"
         >
@@ -22,7 +30,11 @@
 <script>
 export default {
   props: {
-    imageurl: String,
+    product: {
+      type: Object,
+      default: {},
+      required: true,
+    },
   },
   inject: ["image"],
 };
