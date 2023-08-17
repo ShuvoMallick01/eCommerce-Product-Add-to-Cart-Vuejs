@@ -1,25 +1,26 @@
 <template>
-  <tr class="">
+  <tr>
     <td class="px-2 py-4 text-start">
-      <input
-        class="h-4 w-4 focus:ring-offset-0 focus:ring-0 font-medium"
-        type="checkbox"
-        value=""
-      />
+      <button @click="handleDeleteProduct(cartProduct.id)">
+        <i
+          class="fa-solid fa-trash-can cursor-pointer hover:text-red-600 transition-all duration-300"
+        ></i>
+      </button>
     </td>
     <td class="px-2 py-4">
-      <img src="./assets/images/product-1.jpg" class="w-20" alt="" />
+      <img :src="cartProduct.image" class="w-20" alt="" />
     </td>
     <td class="px-2 py-4">
       <div>
-        <h2>Product Title</h2>
-        <p>3 x $200</p>
+        <h2>{{ cartProduct.title }}</h2>
+        <p>{{ cartProduct.quantity }} x {{ cartProduct.price }}</p>
       </div>
     </td>
     <td class="px-2 py-4">
       <div class="flex flex-row h-10 w-full rounded-lg bg-transparent mt-1">
         <button
           class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-l cursor-pointer outline-none"
+          @click="handleProductQuantityMinus(cartProduct.id)"
         >
           <span class="m-auto text-2xl font-thin">−</span>
         </button>
@@ -28,21 +29,32 @@
           type="number"
           class="focus:outline-none text-center bg-gray-300 font-semibold text-md hover:text-black flex items-center text-gray-700 outline-none w-10"
           name="custom-input-number"
-          value="0"
+          :value="cartProduct.quantity"
         />
 
         <button
           class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-e-md cursor-pointer outline-none"
+          @click="handleProductQuantityPlus(cartProduct.id)"
         >
           <span class="m-auto text-2xl font-thin">+</span>
         </button>
       </div>
     </td>
 
-    <td class="px-2 py-4 text-end">$200</td>
+    <td class="px-2 py-4 text-end">${{ cartProduct.price }}</td>
   </tr>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    cartProduct: Object,
+  },
+
+  inject: [
+    "handleProductQuantityPlus",
+    "handleProductQuantityMinus",
+    "handleDeleteProduct",
+  ],
+};
 </script>

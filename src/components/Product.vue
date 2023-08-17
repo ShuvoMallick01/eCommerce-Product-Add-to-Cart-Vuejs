@@ -19,6 +19,7 @@
         </p>
         <button
           class="bg-primary py-2 px-4 rounded-full text-slate-200 font-medium hover:bg-primaryDark transition300 whitespace-nowrap"
+          @click="handleAddToCart(product.id)"
         >
           Add to Cart
         </button>
@@ -36,6 +37,6 @@ export default {
       required: true,
     },
   },
-  inject: ["image"],
+  inject: ["handleAddToCart"],
 };
 </script>

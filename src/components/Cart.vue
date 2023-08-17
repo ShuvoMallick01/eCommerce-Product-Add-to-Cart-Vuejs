@@ -10,10 +10,10 @@
         <thead>
           <tr>
             <th class="px-2 py-2 text-start">
-              <input
+              <!-- <input
                 class="h-4 w-4 focus:ring-offset-0 focus:ring-0 font-medium"
                 type="checkbox"
-              />
+              /> -->
             </th>
             <th class="px-2 py-2 text-start">Image</th>
             <th class="px-2 py-2 text-start">Product</th>
@@ -23,7 +23,12 @@
         </thead>
 
         <tbody class="gap-4">
-          <CartProduct></CartProduct>
+          <!-- Card Product List -->
+          <CartProduct
+            v-for="cartProduct in cartProducts"
+            :cartProduct="cartProduct"
+            :key="cartProduct.id"
+          ></CartProduct>
         </tbody>
       </table>
     </div>
@@ -32,11 +37,11 @@
     <div class="px-3 space-y-1 mt-10 pt-5 border-t-2">
       <div class="flex justify-between text-lg font-medium text-slate-600">
         <p>Total Item</p>
-        <p>99</p>
+        <p>{{ totalItem }}</p>
       </div>
       <div class="flex justify-between text-lg font-medium text-slate-600">
         <p>Items Price</p>
-        <p>$1800</p>
+        <p>${{ itemsPrice }}</p>
       </div>
       <div class="flex justify-between text-lg font-medium text-slate-600 pb-3">
         <p>Shipping Charge</p>
@@ -46,12 +51,19 @@
         class="flex justify-between text-lg font-bold text-slate-700 pt-3 border-t-2"
       >
         <p>Total Amount</p>
-        <p>$1000</p>
+        <p>${{ totalAmount }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    totalItem: Number,
+    itemsPrice: Number,
+    totalAmount: Number,
+  },
+  inject: ["cartProducts"],
+};
 </script>
