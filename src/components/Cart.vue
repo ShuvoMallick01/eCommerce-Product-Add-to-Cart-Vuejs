@@ -41,7 +41,7 @@
       </div>
       <div class="flex justify-between text-lg font-medium text-slate-600">
         <p>Items Price</p>
-        <p>${{ itemsPrice }}</p>
+        <p>${{ itemsPrice.toFixed(2) }}</p>
       </div>
       <div class="flex justify-between text-lg font-medium text-slate-600 pb-3">
         <p>Shipping Charge</p>
@@ -51,7 +51,7 @@
         class="flex justify-between text-lg font-bold text-slate-700 pt-3 border-t-2"
       >
         <p>Total Amount</p>
-        <p>${{ totalAmount }}</p>
+        <p>${{ totalAmount.toFixed(2) }}</p>
       </div>
     </div>
   </div>

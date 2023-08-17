@@ -2,13 +2,14 @@
   <section class="myContainer grid grid-cols-4 py-10 order-2 lg:gap-16 gap-10">
     <!-- PRODUCT LIST -->
     <ProductList :products="products"></ProductList>
-    {{ calculation }}
+
     <!-- CART SECTION -->
     <Cart
       :totalItem="totalItem"
       :itemsPrice="itemsPrice"
       :totalAmount="totalAmount"
     ></Cart>
+    {{ calculation }}
   </section>
 </template>
 
