@@ -22,6 +22,7 @@ export default {
   data() {
     return {
       products: [...products],
+      productsCopy: [...products],
       // cartProduct: { image: "", title: "", quantity: 1, price: null },
       cartProducts: [],
       cartProductQuantity: 1,
@@ -34,11 +35,26 @@ export default {
   methods: {
     handleAddToCart(productId) {
       let product = {};
-      product = this.products.find((item) => item.id === productId);
-      product.quantity = this.cartProductQuantity;
-      this.cartProducts.push(product);
+      let productExistCart = false;
 
-      console.log(product);
+      this.cartProducts.find((product) => {
+        if (product.id === productId) {
+          this.cartProducts.map((product) => {
+            if (product.id === productId) product.quantity++;
+          });
+        } else {
+          product = this.products.find((item) => item.id === productId);
+          product.quantity = this.cartProductQuantity;
+          this.cartProducts.push(product);
+        }
+      });
+
+      // if (productExistCart) {
+      // } else {
+      //   product = this.products.find((item) => item.id === productId);
+      //   product.quantity = this.cartProductQuantity;
+      //   this.cartProducts.push(product);
+      // }
     },
 
     handleDeleteProduct(productId) {
@@ -49,14 +65,19 @@ export default {
 
     handleProductQuantityPlus(productId) {
       this.cartProductQuantity++;
+      let currentProductPrice = null;
+
+      currentProductPrice = this.productsCopy.find(
+        (product) => product.id === productId
+      ).price;
 
       this.cartProducts.map((product) => {
         if (product.id === productId) {
           product.quantity = this.cartProductQuantity;
+          product.price += currentProductPrice;
+          console.log(product.price, currentProductPrice);
         }
       });
-
-      console.log(this.cartProductQuantity);
     },
 
     handleProductQuantityMinus(productId) {

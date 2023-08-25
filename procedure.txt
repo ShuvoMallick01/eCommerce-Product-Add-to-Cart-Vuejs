@@ -1,4 +1,5 @@
 - Add to Cart 
-- Cart Product Listing
-- Calculation Cart quantity x price 
-= Total Price + Text  Also Total Item 
+- Cart Product Listing (No duplication Product + Only Quantity Increase for Same Product)
+- Calculation Cart quantity x price  
+- Total Price + Tax  Also Total Item (Reactivly When Delete + Add + Quantity)
+- Add Pagination

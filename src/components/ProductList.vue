@@ -1,6 +1,6 @@
 <template>
-  <div class="lg:col-span-2 col-span-4">
-    <div class="grid md:grid-cols-2 gap-8">
+  <div class="col-span-4 lg:col-span-2">
+    <div class="grid gap-8 grid-cols-1 md:grid-cols-2">
       <!-- Product -->
       <Product
         v-for="product in products"

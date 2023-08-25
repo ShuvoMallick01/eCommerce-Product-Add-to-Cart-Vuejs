@@ -3,7 +3,7 @@
     <div
       class="h-48 overflow-hidden justify-center items-center px-16 py-2 content-center"
     >
-      <img class="w-full" :src="product.image" alt="" />
+      <img class="md:w-full w-36 mx-auto" :src="product.image" alt="" />
     </div>
 
     <div class="card-body py-4 px-5">
