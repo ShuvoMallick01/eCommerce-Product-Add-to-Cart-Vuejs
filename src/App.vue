@@ -37,24 +37,27 @@ export default {
       let product = {};
       let productExistCart = false;
 
-      this.cartProducts.find((product) => {
-        if (product.id === productId) {
-          this.cartProducts.map((product) => {
-            if (product.id === productId) product.quantity++;
-          });
-        } else {
-          product = this.products.find((item) => item.id === productId);
-          product.quantity = this.cartProductQuantity;
-          this.cartProducts.push(product);
+      // this.cartProducts.find((product) => {
+      //   if (product.id === productId) {
+      //     this.cartProducts.map((product) => {
+      //       if (product.id === productId) product.quantity++;
+      //     });
+      //   } else {
+      //     product = this.products.find((item) => item.id === productId);
+      //     product.quantity = this.cartProductQuantity;
+      //     this.cartProducts.push(product);
+      //   }
+      // });
+
+      this.cartProducts.map((product) => {
+        if (product.id === productId) product.quantity++;
+        else {
         }
       });
 
-      // if (productExistCart) {
-      // } else {
-      //   product = this.products.find((item) => item.id === productId);
-      //   product.quantity = this.cartProductQuantity;
-      //   this.cartProducts.push(product);
-      // }
+      product = this.products.find((item) => item.id === productId);
+      product.quantity = this.cartProductQuantity;
+      this.cartProducts.push(product);
     },
 
     handleDeleteProduct(productId) {
