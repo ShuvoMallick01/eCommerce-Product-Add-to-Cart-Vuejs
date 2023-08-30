@@ -1,8 +1,8 @@
 <template>
   <div
-    class="lg:col-span-2 col-span-4 lg:order-last order-first bg-slate-50 lg:px-8 lg:py-8 md:p-4 py-3 rounded-lg border shadow-md"
+    class="lg:col-span-2 col-span-4 lg:order-last order-first bg-slate-50 px-4 lg:px-8 lg:py-8 md:p-4 py-3 rounded-lg border shadow-md"
   >
-    <h1 class="px-1 font-bold text-2xl mb-5">Cart</h1>
+    <h1 class="px-3 font-bold text-2xl mb-5">Cart</h1>
 
     <!-- Table -->
     <div>

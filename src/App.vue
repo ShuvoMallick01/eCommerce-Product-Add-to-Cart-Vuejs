@@ -22,10 +22,10 @@ export default {
   data() {
     return {
       products: [...products],
-      productsCopy: [...products],
+      // productsCopy: [...products],
       // cartProduct: { image: "", title: "", quantity: 1, price: null },
       cartProducts: [],
-      cartProductQuantity: 1,
+      // cartProductQuantity: 1,
       totalItem: 0,
       itemsPrice: 0,
       totalAmount: 0,
@@ -34,30 +34,23 @@ export default {
 
   methods: {
     handleAddToCart(productId) {
-      let product = {};
-      let productExistCart = false;
+      let findProductInCart = this.cartProducts.find(
+        (cartProduct) => cartProduct.id === productId
+      );
 
-      // this.cartProducts.find((product) => {
-      //   if (product.id === productId) {
-      //     this.cartProducts.map((product) => {
-      //       if (product.id === productId) product.quantity++;
-      //     });
-      //   } else {
-      //     product = this.products.find((item) => item.id === productId);
-      //     product.quantity = this.cartProductQuantity;
-      //     this.cartProducts.push(product);
-      //   }
-      // });
+      if (!findProductInCart) {
+        let currentProduct = this.products.find(
+          (product) => product.id === productId
+        );
 
-      this.cartProducts.map((product) => {
-        if (product.id === productId) product.quantity++;
-        else {
-        }
-      });
-
-      product = this.products.find((item) => item.id === productId);
-      product.quantity = this.cartProductQuantity;
-      this.cartProducts.push(product);
+        this.cartProducts.push({ ...currentProduct, qty: 1 });
+      } else {
+        this.cartProducts = this.cartProducts.map((cartProduct) =>
+          cartProduct.id === productId
+            ? { ...cartProduct, qty: cartProduct.qty + 1 }
+            : cartProduct
+        );
+      }
     },
 
     handleDeleteProduct(productId) {
@@ -67,49 +60,33 @@ export default {
     },
 
     handleProductQuantityPlus(productId) {
-      this.cartProductQuantity++;
-      let currentProductPrice = null;
-
-      currentProductPrice = this.productsCopy.find(
-        (product) => product.id === productId
-      ).price;
-
-      this.cartProducts.map((product) => {
-        if (product.id === productId) {
-          product.quantity = this.cartProductQuantity;
-          product.price += currentProductPrice;
-          console.log(product.price, currentProductPrice);
-        }
-      });
+      this.cartProducts = this.cartProducts.map((cartProduct) =>
+        cartProduct.id === productId
+          ? { ...cartProduct, qty: cartProduct.qty + 1 }
+          : cartProduct
+      );
     },
 
     handleProductQuantityMinus(productId) {
-      if (this.cartProductQuantity > 1) {
-        this.cartProductQuantity--;
-        console.log(this.cartProductQuantity);
-      }
-
-      this.cartProducts.map((product) => {
-        if (product.id === productId) {
-          product.quantity = this.cartProductQuantity;
-        }
-      });
+      this.cartProducts = this.cartProducts.map((cartProduct) =>
+        cartProduct.id === productId
+          ? { ...cartProduct, qty: cartProduct.qty - 1 }
+          : cartProduct
+      );
     },
   },
 
   computed: {
     calculation() {
       this.totalItem = this.cartProducts.reduce((total, product) => {
-        return total + product.quantity;
+        return total + product.qty;
       }, 0);
 
       this.itemsPrice = this.cartProducts.reduce((total, product) => {
-        return total + product.price;
-      }, 1);
+        return total + product.price * product.qty;
+      }, 0);
 
-      this.totalAmount = this.cartProducts.reduce((total, product) => {
-        return total + product.price;
-      }, 10);
+      this.totalAmount = this.itemsPrice === 0 ? 0 : this.itemsPrice + 10;
     },
   },
 

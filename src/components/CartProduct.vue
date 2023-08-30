@@ -13,7 +13,10 @@
     <td class="px-2 py-4">
       <div>
         <h2>{{ cartProduct.title }}</h2>
-        <p>{{ cartProduct.quantity }} x {{ cartProduct.price }}</p>
+        <p>
+          {{ cartProduct.qty }} x
+          {{ (cartProduct.price * cartProduct.qty).toFixed(2) }}
+        </p>
       </div>
     </td>
     <td class="px-2 py-4">
@@ -29,7 +32,7 @@
           type="number"
           class="focus:outline-none text-center bg-gray-300 font-semibold text-md hover:text-black flex items-center text-gray-700 outline-none w-10"
           name="custom-input-number"
-          :value="cartProduct.quantity"
+          :value="cartProduct.qty"
         />
 
         <button
@@ -41,7 +44,9 @@
       </div>
     </td>
 
-    <td class="px-2 py-4 text-end">${{ cartProduct.price }}</td>
+    <td class="px-2 py-4 text-end">
+      ${{ (cartProduct.price * cartProduct.qty).toFixed(2) }}
+    </td>
   </tr>
 </template>
 
