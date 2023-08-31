@@ -3,13 +3,15 @@
     <nav aria-label="Page navigation example ">
       <ul class="inline-flex -space-x-px text-base h-10">
         <li>
-          <a
+          <button
             href="#"
             class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700"
             :class="{ 'cursor-not-allowed': 1 === pageIndex }"
             @click="prevPagination"
-            >Previous</a
+            :disabled="pageIndex === 1"
           >
+            Previous
+          </button>
         </li>
         <li v-for="num in totalPage">
           <a
@@ -22,13 +24,15 @@
         </li>
 
         <li>
-          <a
+          <button
             href="#"
             class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700"
             @click="nextPagination"
             :class="{ 'cursor-not-allowed': totalPage === pageIndex }"
-            >Next</a
+            :disabled="pageIndex === totalPage"
           >
+            Next
+          </button>
         </li>
       </ul>
     </nav>

@@ -1,8 +1,8 @@
 <template>
   <div class="lg:col-span-2 col-span-4 lg:order-last order-first">
     <div
-      class="border bg-slate-50 px-4 lg:px-8 lg:py-8 md:p-4 py-3 rounded-lg shadow-md"
-      :class="cartProducts.length == 0 ? 'h-screen' : ''"
+      class="border bg-slate-50 px-4 lg:px-8 lg:py-8 md:p-4 py-5 rounded-lg shadow-md"
+      :class="cartProducts.length == 0 ? 'lg:h-screen' : ''"
     >
       <h1 class="px-3 font-bold text-2xl mb-5">Cart</h1>
 
@@ -37,7 +37,7 @@
 
       <!-- Calculation -->
       <div v-if="cartProducts.length > 0">
-        <div class="px-3 space-y-1 mt-10 pt-5 border-t-2">
+        <div class="px-3 space-y-1 mt-10 pt-5 border-t-2 pb-5">
           <div class="flex justify-between text-lg font-medium text-slate-600">
             <p>Total Item</p>
             <p>{{ totalItem }}</p>
@@ -59,6 +59,12 @@
             <p>${{ totalAmount.toFixed(2) }}</p>
           </div>
         </div>
+      </div>
+
+      <div v-if="cartProducts.length === 0">
+        <h2 class="text-slate-400 font-light text-2xl text-center py-10">
+          Cart is Empty
+        </h2>
       </div>
     </div>
   </div>
