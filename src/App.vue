@@ -1,7 +1,7 @@
 <template>
   <section class="myContainer grid grid-cols-4 py-10 order-2 lg:gap-16 gap-10">
     <!-- PRODUCT LIST -->
-    <ProductList :products="products"></ProductList>
+    <ProductList :products="paginationProducts"></ProductList>
 
     <!-- CART SECTION -->
     <Cart
@@ -10,6 +10,7 @@
       :totalAmount="totalAmount"
     ></Cart>
     {{ calculation }}
+    {{ handlePaginationProducts }}
   </section>
 </template>
 
@@ -22,13 +23,13 @@ export default {
   data() {
     return {
       products: [...products],
-      // productsCopy: [...products],
-      // cartProduct: { image: "", title: "", quantity: 1, price: null },
       cartProducts: [],
-      // cartProductQuantity: 1,
+      paginationProducts: [],
       totalItem: 0,
       itemsPrice: 0,
       totalAmount: 0,
+      pageIndex: 1,
+      totalPage: null,
     };
   },
 
@@ -74,6 +75,18 @@ export default {
           : cartProduct
       );
     },
+
+    handleNextPagination() {
+      this.pageIndex++;
+    },
+
+    handlePrevPagination() {
+      this.pageIndex--;
+    },
+
+    handlePaginationNumber(num) {
+      this.pageIndex = num;
+    },
   },
 
   computed: {
@@ -88,6 +101,18 @@ export default {
 
       this.totalAmount = this.itemsPrice === 0 ? 0 : this.itemsPrice + 10;
     },
+
+    handleTotalPage() {
+      return Math.ceil(this.products.length / 4);
+    },
+
+    handlePaginationProducts() {
+      let start = (this.pageIndex - 1) * 4;
+      let end = this.pageIndex * 4;
+      //0(0*4), 4(1*4) | 4(1*4) - 8(2*4) | 8(2*4) - 12(3*4)
+      this.paginationProducts = this.products.slice(start, end);
+      console.log(this.paginationProducts);
+    },
   },
 
   provide() {
@@ -100,6 +125,12 @@ export default {
         () => this.handleProductQuantityMinus
       ),
       handleDeleteProduct: computed(() => this.handleDeleteProduct),
+
+      totalPage: computed(() => this.handleTotalPage),
+      pageIndex: computed(() => this.pageIndex),
+      nextPagination: computed(() => this.handleNextPagination),
+      prevPagination: computed(() => this.handlePrevPagination),
+      paginationNumber: computed(() => this.handlePaginationNumber),
     };
   },
 };

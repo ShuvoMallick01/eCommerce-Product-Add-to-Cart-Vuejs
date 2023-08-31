@@ -10,6 +10,9 @@
 
       <!-- End -->
     </div>
+
+    <!-- PAGINATION -->
+    <Pagination></Pagination>
   </div>
 </template>
 
