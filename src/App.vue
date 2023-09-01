@@ -69,11 +69,20 @@ export default {
     },
 
     handleProductQuantityMinus(productId) {
-      this.cartProducts = this.cartProducts.map((cartProduct) =>
-        cartProduct.id === productId
-          ? { ...cartProduct, qty: cartProduct.qty - 1 }
-          : cartProduct
-      );
+      // this.cartProducts = this.cartProducts.map((cartProduct) =>
+      //   cartProduct.id === productId
+      //     ? { ...cartProduct, qty: cartProduct.qty - 1 }
+      //     : cartProduct
+      // );
+
+      this.cartProducts = this.cartProducts.map((cartProduct) => {
+        if (cartProduct.id === productId) {
+          let newQty = cartProduct.qty > 0 ? cartProduct.qty - 1 : 0;
+          return { ...cartProduct, qty: newQty };
+        } else {
+          return cartProduct;
+        }
+      });
     },
 
     handleNextPagination() {
