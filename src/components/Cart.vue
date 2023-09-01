@@ -1,7 +1,7 @@
 <template>
   <div class="lg:col-span-2 col-span-4 lg:order-last order-first">
     <div
-      class="border bg-slate-50 px-4 lg:px-8 lg:py-8 md:p-4 py-5 rounded-lg shadow-md"
+      class="border bg-slate-50 px-4 lg:px-8 lg:py-8 md:p-4 py-5 rounded-lg shadow-md relative h-60"
       :class="cartProducts.length == 0 ? 'lg:h-screen' : ''"
     >
       <h1 class="px-3 font-bold text-2xl mb-5">Cart</h1>
@@ -62,7 +62,9 @@
       </div>
 
       <div v-if="cartProducts.length === 0">
-        <h2 class="text-slate-400 font-light text-2xl text-center py-10">
+        <h2
+          class="text-slate-400 font-light text-2xl text-center absolute inset-0 top-20 flex justify-center items-center"
+        >
           Cart is Empty
         </h2>
       </div>
