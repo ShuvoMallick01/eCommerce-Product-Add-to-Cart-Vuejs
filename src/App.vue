@@ -1,7 +1,7 @@
 <template>
   <section class="myContainer grid grid-cols-4 py-10 order-2 lg:gap-16 gap-10">
     <!-- PRODUCT LIST -->
-    <ProductList :products="paginationProducts"></ProductList>
+    <ProductList></ProductList>
 
     <!-- CART SECTION -->
     <Cart
@@ -9,7 +9,6 @@
       :itemsPrice="itemsPrice"
       :totalAmount="totalAmount"
     ></Cart>
-    {{ handlePaginationProducts }}
   </section>
 </template>
 
@@ -119,7 +118,8 @@ export default {
       let end = this.pageIndex * 4;
       //0(0*4), 4(1*4) | 4(1*4) - 8(2*4) | 8(2*4) - 12(3*4)
       this.paginationProducts = this.products.slice(start, end);
-      console.log(this.paginationProducts);
+
+      return { products: this.paginationProducts };
     },
   },
 
@@ -129,7 +129,6 @@ export default {
       cartProducts: computed(() => this.cartProducts),
       totalPage: computed(() => this.handleTotalPage),
       pageIndex: computed(() => this.pageIndex),
-
       handleAddToCart: this.handleAddToCart,
       handleProductQuantityPlus: this.handleProductQuantityPlus,
       handleProductQuantityMinus: this.handleProductQuantityMinus,
@@ -138,6 +137,7 @@ export default {
       prevPagination: this.handlePrevPagination,
       paginationNumber: this.handlePaginationNumber,
       calculation: computed(() => this.calculation),
+      paginationProducts: computed(() => this.handlePaginationProducts),
     };
   },
 };
