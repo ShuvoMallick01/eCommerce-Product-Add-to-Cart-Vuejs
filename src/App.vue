@@ -9,7 +9,6 @@
       :itemsPrice="itemsPrice"
       :totalAmount="totalAmount"
     ></Cart>
-    {{ calculation }}
     {{ handlePaginationProducts }}
   </section>
 </template>
@@ -69,12 +68,6 @@ export default {
     },
 
     handleProductQuantityMinus(productId) {
-      // this.cartProducts = this.cartProducts.map((cartProduct) =>
-      //   cartProduct.id === productId
-      //     ? { ...cartProduct, qty: cartProduct.qty - 1 }
-      //     : cartProduct
-      // );
-
       this.cartProducts = this.cartProducts.map((cartProduct) => {
         if (cartProduct.id === productId) {
           let newQty = cartProduct.qty > 0 ? cartProduct.qty - 1 : 0;
@@ -109,6 +102,12 @@ export default {
       }, 0);
 
       this.totalAmount = this.itemsPrice === 0 ? 0 : this.itemsPrice + 10;
+
+      return {
+        totalItem: this.totalItem,
+        itemsPrice: this.itemsPrice,
+        totalAmount: this.totalAmount,
+      };
     },
 
     handleTotalPage() {
@@ -127,19 +126,18 @@ export default {
   provide() {
     return {
       products: computed(() => this.products),
-      handleAddToCart: computed(() => this.handleAddToCart),
       cartProducts: computed(() => this.cartProducts),
-      handleProductQuantityPlus: computed(() => this.handleProductQuantityPlus),
-      handleProductQuantityMinus: computed(
-        () => this.handleProductQuantityMinus
-      ),
-      handleDeleteProduct: computed(() => this.handleDeleteProduct),
-
       totalPage: computed(() => this.handleTotalPage),
       pageIndex: computed(() => this.pageIndex),
-      nextPagination: computed(() => this.handleNextPagination),
-      prevPagination: computed(() => this.handlePrevPagination),
-      paginationNumber: computed(() => this.handlePaginationNumber),
+
+      handleAddToCart: this.handleAddToCart,
+      handleProductQuantityPlus: this.handleProductQuantityPlus,
+      handleProductQuantityMinus: this.handleProductQuantityMinus,
+      handleDeleteProduct: this.handleDeleteProduct,
+      nextPagination: this.handleNextPagination,
+      prevPagination: this.handlePrevPagination,
+      paginationNumber: this.handlePaginationNumber,
+      calculation: computed(() => this.calculation),
     };
   },
 };
