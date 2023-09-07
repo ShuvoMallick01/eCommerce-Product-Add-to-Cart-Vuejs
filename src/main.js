@@ -1,6 +1,7 @@
 import "./assets/css/main.css";
 
 import { createApp } from "vue";
+import { createPinia } from "pinia";
 import App from "./App.vue";
 
 // IMPORT COMPONENT
@@ -12,6 +13,7 @@ import Pagination from "./components/Pagination.vue";
 
 // MAIN APP
 const app = createApp(App);
+const pinia = createPinia();
 
 // COMPONENTS
 app.component("Product", Product);
@@ -20,4 +22,5 @@ app.component("Cart", Cart);
 app.component("CartProduct", CartProduct);
 app.component("Pagination", Pagination);
 
+app.use(pinia);
 app.mount("#app");

@@ -51,15 +51,19 @@
 </template>
 
 <script>
+import { mapActions } from "pinia";
+import { useCartStore } from "../store/cartsStore";
 export default {
   props: {
     cartProduct: Object,
   },
 
-  inject: [
-    "handleProductQuantityPlus",
-    "handleProductQuantityMinus",
-    "handleDeleteProduct",
-  ],
+  methods: {
+    ...mapActions(useCartStore, [
+      "handleProductQuantityPlus",
+      "handleProductQuantityMinus",
+      "handleDeleteProduct",
+    ]),
+  },
 };
 </script>
