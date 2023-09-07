@@ -16,8 +16,8 @@
         <li v-for="num in totalPage">
           <a
             href="#"
-            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
-            :class="[num === pageIndex ? 'bg-gray-300' : '']"
+            class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 border border-gray-300 hover:bg-gray-200 hover:text-gray-700"
+            :class="[num === pageIndex ? 'bg-gray-200' : '']"
             @click="handlePaginationNumber(num)"
             >{{ num }}</a
           >
@@ -42,21 +42,8 @@
 <script>
 import { mapActions, mapState } from "pinia";
 import { useProductsStore } from "../store/productStore";
-export default {
-  inject: [
-    // "nextPagination",
-    // "prevPagination",
-    // "totalPage",
-    // "pageIndex",
-    // "paginationNumber",
-  ],
-  data() {
-    return {
-      // pageIndex: 1,
-      // totalPage: null,
-    };
-  },
 
+export default {
   computed: {
     ...mapState(useProductsStore, ["products", "pageIndex"]),
 

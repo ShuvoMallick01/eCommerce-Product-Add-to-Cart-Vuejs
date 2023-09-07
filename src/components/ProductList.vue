@@ -21,10 +21,6 @@ import { mapState } from "pinia";
 import { useProductsStore } from "../store/productStore";
 
 export default {
-  props: {},
-
-  // inject: ["paginationProducts"],
-
   computed: {
     ...mapState(useProductsStore, ["handlePaginationProducts"]),
   },

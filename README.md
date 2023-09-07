@@ -1,8 +1,10 @@
-# eCommerce Product Add to Cart Functionality Vuejs
+# eCommerce Product Add to Cart Functionality Pinia State Management Vuejs
 
-Live Project: https://ecommerce-product-add-to-cart-vuejs.netlify.app/
+Live Project: https://product-addtocart-statemanagement-vue.netlify.app/
 
 Elevate your e-commerce capabilities with our compact yet powerful Vue.js application for product cart management. This lightweight solution combines responsiveness with efficiency, delivering a seamless shopping experience for both customers and developers.
+
+⚡ State Management: Implement Vue Pinia State Management Feature
 
 🛒 Seamless Shopping: Intuitively add, remove, and adjust product quantities with real-time reactivity, enhancing the shopping journey.
 

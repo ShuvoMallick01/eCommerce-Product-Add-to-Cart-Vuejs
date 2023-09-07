@@ -31,8 +31,6 @@
 <script>
 import { mapActions } from "pinia";
 import { useCartStore } from "../store/cartsStore";
-// import { mapActions } from "pinia";
-// import { useProductStore } from "../store/productStore";
 
 export default {
   props: {
@@ -42,14 +40,9 @@ export default {
       required: true,
     },
   },
-  // inject: ["handleAddToCart"],
 
   methods: {
     ...mapActions(useCartStore, ["handleAddToCart"]),
   },
-
-  // methods: {
-  //   ...
-  // },
 };
 </script>
