@@ -4,11 +4,7 @@
     <ProductList></ProductList>
 
     <!-- CART SECTION -->
-    <Cart
-      :totalItem="totalItem"
-      :itemsPrice="itemsPrice"
-      :totalAmount="totalAmount"
-    ></Cart>
+    <Cart></Cart>
   </section>
 </template>
 
@@ -23,9 +19,6 @@ export default {
       products: [...products],
       cartProducts: [],
       paginationProducts: [],
-      totalItem: 0,
-      itemsPrice: 0,
-      totalAmount: 0,
       pageIndex: 1,
       totalPage: null,
     };
@@ -92,20 +85,20 @@ export default {
 
   computed: {
     calculation() {
-      this.totalItem = this.cartProducts.reduce((total, product) => {
+      let totalItem = this.cartProducts.reduce((total, product) => {
         return total + product.qty;
       }, 0);
 
-      this.itemsPrice = this.cartProducts.reduce((total, product) => {
+      let itemsPrice = this.cartProducts.reduce((total, product) => {
         return total + product.price * product.qty;
       }, 0);
 
-      this.totalAmount = this.itemsPrice === 0 ? 0 : this.itemsPrice + 10;
+      let totalAmount = itemsPrice === 0 ? 0 : itemsPrice + 10;
 
       return {
-        totalItem: this.totalItem,
-        itemsPrice: this.itemsPrice,
-        totalAmount: this.totalAmount,
+        totalItem,
+        itemsPrice,
+        totalAmount,
       };
     },
 

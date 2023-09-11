@@ -74,11 +74,8 @@
 
 <script>
 export default {
-  props: {
-    totalItem: Number,
-    itemsPrice: Number,
-    totalAmount: Number,
-  },
+  props: {},
+
   inject: ["cartProducts", "calculation"],
 };
 </script>
