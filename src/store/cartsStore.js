@@ -5,9 +5,6 @@ export const useCartStore = defineStore("carts", {
   state() {
     return {
       cartProducts: [],
-      totalItem: 0,
-      itemsPrice: 0,
-      totalAmount: 0,
     };
   },
 
@@ -63,20 +60,20 @@ export const useCartStore = defineStore("carts", {
 
   getters: {
     calculation() {
-      this.totalItem = this.cartProducts.reduce((total, product) => {
+      let totalItem = this.cartProducts.reduce((total, product) => {
         return total + product.qty;
       }, 0);
 
-      this.itemsPrice = this.cartProducts.reduce((total, product) => {
+      let itemsPrice = this.cartProducts.reduce((total, product) => {
         return total + product.price * product.qty;
       }, 0);
 
-      this.totalAmount = this.itemsPrice === 0 ? 0 : this.itemsPrice + 10;
+      let totalAmount = itemsPrice === 0 ? 0 : itemsPrice + 10;
 
       return {
-        totalItem: this.totalItem,
-        itemsPrice: this.itemsPrice,
-        totalAmount: this.totalAmount,
+        totalItem,
+        itemsPrice,
+        totalAmount,
       };
     },
   },

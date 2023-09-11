@@ -70,15 +70,10 @@
 <script>
 import { mapActions, mapState } from "pinia";
 import { useCartStore } from "../store/cartsStore";
+
 export default {
   computed: {
-    ...mapState(useCartStore, [
-      "totalItem",
-      "itemsPrice",
-      "totalAmount",
-      "calculation",
-      "cartProducts",
-    ]),
+    ...mapState(useCartStore, ["calculation", "cartProducts"]),
   },
 
   methods: {

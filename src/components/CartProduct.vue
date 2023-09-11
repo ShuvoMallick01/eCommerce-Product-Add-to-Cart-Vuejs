@@ -19,6 +19,7 @@
         </p>
       </div>
     </td>
+
     <td class="px-2 py-4">
       <div class="flex flex-row h-10 w-full rounded-lg bg-transparent mt-1">
         <button
